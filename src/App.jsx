@@ -9,6 +9,7 @@ function App() {
   const [enlargedImage, setEnlargedImage] = useState(null);
   const canvasRef = useRef(null);
   const [cropWidth, setCropWidth] = useState(100);
+  const previewRef = useRef(null);
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -171,6 +172,12 @@ function App() {
   const handlePreview = async () => {
     const mergedImageUrl = await generateMergedImage();
     setPreviewUrl(mergedImageUrl);
+    setTimeout(() => {
+      previewRef.current?.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 100);
   };
 
   const handleDownload = () => {
@@ -346,7 +353,7 @@ function App() {
       )}
 
       {previewUrl && (
-        <div className="merge-preview">
+        <div className="merge-preview" ref={previewRef}>
           <h2>预览效果</h2>
           <div className="preview-images-container">
             {images.map((image, index) => (
