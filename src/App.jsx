@@ -8,6 +8,7 @@ function App() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [enlargedImage, setEnlargedImage] = useState(null);
   const canvasRef = useRef(null);
+  const [cropWidth, setCropWidth] = useState(100);
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -114,7 +115,6 @@ function App() {
       imageList.map((image, index) => new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
-          // 第一张图用完整高度，其他图片用字幕高度
           if (index === 0) {
             totalHeight += img.height + spacing;
           } else {
@@ -128,7 +128,8 @@ function App() {
     );
 
     const canvas = canvasRef.current;
-    canvas.width = maxWidth;
+    const finalWidth = maxWidth * (cropWidth / 100);
+    canvas.width = finalWidth;
     canvas.height = totalHeight - spacing;
     const ctx = canvas.getContext('2d');
 
@@ -138,22 +139,23 @@ function App() {
     let currentY = 0;
     for (let i = 0; i < loadedImages.length; i++) {
       const img = loadedImages[i];
+      const offsetX = (maxWidth - finalWidth) / 2;
       
       if (i === 0) {
-        // 第一张图绘制完整图片
-        ctx.drawImage(img, 0, currentY);
+        ctx.drawImage(
+          img,
+          offsetX, 0, finalWidth, img.height,
+          0, currentY, finalWidth, img.height
+        );
         currentY += img.height;
       } else {
-        // 其他图片只绘制字幕部分
         const subtitleHeight = img.height * subtitleRatio;
         const subtitleY = img.height - subtitleHeight;
         
         ctx.drawImage(
           img,
-          0, subtitleY,
-          img.width, subtitleHeight,
-          0, currentY,
-          img.width, subtitleHeight
+          offsetX, subtitleY, finalWidth, subtitleHeight,
+          0, currentY, finalWidth, subtitleHeight
         );
         currentY += subtitleHeight;
       }
@@ -392,12 +394,37 @@ function App() {
             ))}
           </div>
           <img src={previewUrl} alt="合并预览" className="merged-preview" />
-          <button 
-            className="download-button"
-            onClick={handleDownload}
-          >
-            下载图片
-          </button>
+          <div className="download-controls">
+            <div className="spacing-control crop-control">
+              <label>调整宽度: </label>
+              <input 
+                type="range" 
+                min="50" 
+                max="100"
+                value={cropWidth}
+                onChange={(e) => {
+                  setCropWidth(Number(e.target.value));
+                }}
+                onMouseUp={() => {
+                  if (previewUrl) {
+                    handlePreview();
+                  }
+                }}
+                onTouchEnd={() => {
+                  if (previewUrl) {
+                    handlePreview();
+                  }
+                }}
+              />
+              <span>{cropWidth}%</span>
+            </div>
+            <button 
+              className="download-button"
+              onClick={handleDownload}
+            >
+              下载图片
+            </button>
+          </div>
         </div>
       )}
 
@@ -420,6 +447,33 @@ function App() {
       )}
 
       <canvas ref={canvasRef} style={{ display: 'none' }} />
+
+      <div className="instructions">
+        <h2>使用说明</h2>
+        <div className="instruction-content">
+          <div className="instruction-section">
+            <h3>基本步骤：</h3>
+            <ol>
+              <li>点击"选择图片"上传需要拼接的字幕截图</li>
+              <li>拖拽调整图片顺序（序号在左上角显示）</li>
+              <li>调整图片间距（默认为0像素）</li>
+              <li>点击"预览效果"查看拼接预览</li>
+              <li>预览满意后点击"下载图片"保存</li>
+            </ol>
+          </div>
+          
+          <div className="instruction-section">
+            <h3>注意事项：</h3>
+            <ul>
+              <li>支持的图片格式：PNG、JPG、JPEG、WebP</li>
+              <li>建议上传相同宽度的字幕截图</li>
+              <li>可以随时调整图片顺序和间距</li>
+              <li>点击图片可以放大预览</li>
+              <li>如需删除图片，点击图片右下角的删除按钮</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
