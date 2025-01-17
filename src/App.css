@@ -942,7 +942,78 @@ h2 {
   }
 }
 
-/* 添加深色模式支持 */
+/* 修改使用说明样式 - 移到深色模式之前 */
+.instructions {
+  width: min(100%, 1000px);
+  margin: 30px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.instruction-content {
+  display: flex;
+  gap: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.instruction-section {
+  flex: 1;
+}
+
+.instructions h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1.5em;
+}
+
+.instructions h3 {
+  color: #3498db;
+  margin: 0 0 1em;
+  font-size: 1.2em;
+}
+
+.instructions ol,
+.instructions ul {
+  padding-left: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.instructions li {
+  margin-bottom: 0.8em;
+  color: #2c3e50;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .instruction-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .instructions {
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  .instructions h2 {
+    font-size: 1.3em;
+  }
+
+  .instructions h3 {
+    font-size: 1.1em;
+    margin: 1.5em 0 1em;
+  }
+
+  .instructions li {
+    font-size: 0.95em;
+  }
+}
+
+/* 深色模式支持 */
 @media (prefers-color-scheme: dark) {
   html, body, #root {
     background-color: #1a1a1a;
@@ -954,18 +1025,44 @@ h2 {
   }
 
   /* 容器背景色 */
-  .controls, .images-preview, .merge-preview {
+  .controls, .images-preview, .merge-preview, .instructions {
     background: #2d2d2d;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
 
   /* 标题颜色 */
-  h1, h2 {
+  h1, h2, 
+  .instructions h2 {
     color: #e1e1e1;
   }
 
+  /* 文字颜色 */
+  .spacing-control label,
+  .spacing-control span,
+  .instructions li,
+  .instructions p {
+    color: #e1e1e1;
+  }
+
+  /* 强调色 */
+  .instructions h3,
+  .drag-handle {
+    color: #3498db;
+  }
+
+  /* 预览区域样式 */
+  .preview-images-container,
+  .preview-image-item,
+  .image-item {
+    background: #2d2d2d;
+    border-color: #404040;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
   /* 按钮样式 */
-  .preview-button, .download-button, .file-input-button {
+  .preview-button, 
+  .download-button, 
+  .file-input-button {
     background-color: #2980b9;
   }
 
@@ -980,35 +1077,16 @@ h2 {
     color: #888;
   }
 
-  /* 图片项样式 */
-  .image-item {
-    background: #2d2d2d;
-    border-color: #404040;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
-
-  .image-item:hover {
+  /* 悬停效果 */
+  .image-item:hover,
+  .preview-image-item:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   }
 
-  /* 预览区域样式 */
-  .preview-images-container {
-    background: #2d2d2d;
-  }
-
-  .preview-image-item {
-    background: #2d2d2d;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
-
-  /* 文字颜色 */
-  .spacing-control label,
-  .spacing-control span {
-    color: #e1e1e1;
-  }
-
-  .drag-handle {
-    color: #3498db;
+  /* 删除按钮悬停效果 */
+  .remove-button:hover,
+  .preview-remove-button:hover {
+    background: #d63031;
   }
 
   /* 滚动条样式 */
@@ -1029,9 +1107,22 @@ h2 {
     background: #2d2d2d;
   }
 
-  /* 删除按钮悬停效果 */
-  .remove-button:hover,
-  .preview-remove-button:hover {
-    background: #d63031;
+  /* 使用说明深色模式样式 */
+  .instructions {
+    background: #2d2d2d;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .instructions h2,
+  .instructions li {
+    color: #e1e1e1;
+  }
+
+  .instructions h3 {
+    color: #3498db;
+  }
+
+  .instruction-content {
+    border-color: #404040;
   }
 }
