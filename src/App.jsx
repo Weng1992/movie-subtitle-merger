@@ -10,6 +10,7 @@ function App() {
   const canvasRef = useRef(null);
   const [cropWidth, setCropWidth] = useState(100);
   const previewRef = useRef(null);
+  const [downloadFileName, setDownloadFileName] = useState('');
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -183,7 +184,7 @@ function App() {
   const handleDownload = () => {
     if (previewUrl) {
       const link = document.createElement('a');
-      link.download = '合并后的台词.png';
+      link.download = downloadFileName || '合并后的台词.png';
       link.href = previewUrl;
       link.click();
     }
@@ -432,6 +433,14 @@ function App() {
               />
               <span>{cropWidth}%</span>
             </div>
+            <div className="filename-input">
+              <input
+                type="text"
+                placeholder="输入保存的文件名"
+                value={downloadFileName}
+                onChange={(e) => setDownloadFileName(e.target.value)}
+              />
+            </div>
             <button 
               className="download-button"
               onClick={handleDownload}
@@ -472,7 +481,8 @@ function App() {
               <li>拖拽调整图片顺序（序号在左上角显示）</li>
               <li>调整图片间距（默认为0像素）</li>
               <li>点击"预览效果"查看拼接预览</li>
-              <li>预览满意后点击"下载图片"保存</li>
+              <li>可调整最终图片宽度（默认100%）</li>
+              <li>输入文件名并点击"下载图片"保存</li>
             </ol>
           </div>
           
@@ -484,6 +494,7 @@ function App() {
               <li>可以随时调整图片顺序和间距</li>
               <li>点击图片可以放大预览</li>
               <li>如需删除图片，点击图片右下角的删除按钮</li>
+              <li>未输入文件名时将使用默认名称保存</li>
             </ul>
           </div>
         </div>
