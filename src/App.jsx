@@ -266,6 +266,13 @@ function App() {
     setEnlargedImage(null);
   };
 
+  // 添加一个新的函数来处理宽度调整后的预览更新
+  const handleCropWidthChange = async () => {
+    const mergedImageUrl = await generateMergedImage();
+    setPreviewUrl(mergedImageUrl);
+    // 不包含滚动效果
+  };
+
   return (
     <div className="app">
       <h1>影视字幕拼接工具</h1>
@@ -414,12 +421,12 @@ function App() {
                 }}
                 onMouseUp={() => {
                   if (previewUrl) {
-                    handlePreview();
+                    handleCropWidthChange();  // 使用新的处理函数
                   }
                 }}
                 onTouchEnd={() => {
                   if (previewUrl) {
-                    handlePreview();
+                    handleCropWidthChange();  // 使用新的处理函数
                   }
                 }}
               />
