@@ -1,0 +1,1000 @@
+/* 修改全局样式 */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f8f9fa;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: min(100% - 40px, 1200px);
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
+}
+
+/* 修改所有主要容器的通用样式 */
+.controls, .images-preview, .merge-preview {
+  width: min(100%, 1000px);
+  margin: 0 auto 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* 修改标题样式 */
+h1, h2 {
+  width: min(100%, 1000px);
+  margin: 0 auto 1em;
+  text-align: center;
+}
+
+/* 修改图片容器样式 */
+.images-container {
+  width: min(100%, 1000px);
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* 修改预览容器样式 */
+.preview-images-container {
+  width: min(100%, 1000px);
+  margin: 20px auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+/* 修改合并预览图片样式 */
+.merged-preview {
+  width: min(100%, 1000px);
+  margin: 20px auto;
+  display: block;
+}
+
+/* 修改按钮容器样式 */
+.file-input-container, .button-container {
+  width: min(100%, 1000px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 修改控制区域样式 */
+.controls {
+  width: min(100%, 1000px);
+  margin: 0 auto 20px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* 修改图片预览区域样式 */
+.images-preview {
+  width: min(100%, 1000px);
+  margin: 30px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* 修改图片容器样式 */
+.images-container {
+  width: 100%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+.controls, .images-preview, .merge-preview {
+  width: min(100%, 1000px);
+  margin: 0 auto 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.images-container {
+  width: 100%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  html, body, #root {
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .app {
+    width: 100%;
+    padding: 10px;
+    min-height: 100vh;
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  width: min(100%, 1000px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.spacing-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spacing-control label {
+  color: #2c3e50;
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.spacing-control span {
+  color: #2c3e50;
+  font-weight: 500;
+  min-width: 50px;
+}
+
+.images-preview {
+  margin: 30px auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  width: min(100%, 1000px);
+}
+
+.image-item {
+  border: 1px solid #e1e4e8;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  cursor: move;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.image-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.image-item.dragging {
+  opacity: 0.7;
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.image-item.drag-over {
+  border: 2px dashed #3498db;
+}
+
+.image-item img {
+  max-width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.drag-handle {
+  margin-top: 10px;
+  color: #3498db;
+  font-size: 14px;
+  font-weight: 500;
+  user-select: none;
+}
+
+.merge-preview {
+  margin: 30px auto;
+  text-align: center;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  width: min(100%, 1000px);
+}
+
+.merge-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+/* 统一按钮样式 */
+.preview-button, .download-button, .file-input-button {
+  padding: 12px 24px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.1s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* 按钮悬停效果 */
+.preview-button:hover:not(:disabled),
+.download-button:hover,
+.file-input-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+/* 按钮点击效果 */
+.preview-button:active:not(:disabled),
+.download-button:active,
+.file-input-button:active {
+  transform: translateY(1px);
+}
+
+/* 禁用状态 */
+.preview-button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .preview-button, .download-button, .file-input-button {
+    width: 100%;
+    justify-content: center;
+    padding: 15px;
+  }
+}
+
+h1, h2 {
+  color: #2c3e50;
+  margin-bottom: 1em;
+}
+
+h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+.preview-images-container {
+  width: min(100%, 1000px);
+  margin: 20px auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.preview-images-container {
+  scrollbar-width: thin;
+  scrollbar-color: #3498db #f8f9fa;
+}
+
+.preview-images-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.preview-images-container::-webkit-scrollbar-track {
+  background: #f8f9fa;
+}
+
+.preview-images-container::-webkit-scrollbar-thumb {
+  background-color: #3498db;
+  border-radius: 4px;
+}
+
+.preview-image-item {
+  position: relative;
+  padding: 15px 25px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  cursor: move;
+  transition: box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  width: calc(100% - 40px);
+  height: 180px;
+  min-width: 0;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.preview-image-item:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.preview-image-item.dragging {
+  opacity: 0.7;
+  transform: scale(1.02);
+}
+
+.preview-image-item.drag-over {
+  border: 2px dashed #3498db;
+}
+
+.preview-image-wrapper {
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.preview-image-item img {
+  display: block;
+  border-radius: 4px;
+  max-width: 100%;
+  height: auto;
+}
+
+.merged-preview {
+  margin-top: 20px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* 统一序号和删除按钮的样式 */
+.image-number, .remove-button, .preview-remove-button {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1;
+  font-size: 16px;
+  min-height: unset;
+  aspect-ratio: 1;
+}
+
+.image-number {
+  top: -10px;
+  left: -10px;
+  background: #3498db;
+  color: white;
+}
+
+.remove-button {
+  top: -10px;
+  right: -10px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+
+.remove-button:hover {
+  background: #c0392b;
+}
+
+/* 修改文件上传按钮样式 */
+.file-input-container {
+  position: relative;
+  display: inline-block;
+  width: auto;
+}
+
+.file-input-container input[type="file"] {
+  display: none;
+}
+
+.file-input-button {
+  padding: 12px 24px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.file-input-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+.file-input-button:active {
+  transform: translateY(1px);
+}
+
+/* 添加上传图标 */
+.upload-icon {
+  width: 20px;
+  height: 20px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+
+.upload-icon::before {
+  content: '↑';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* 响应式布局调整 */
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+    width: 100vw;
+    margin: 0;
+    max-width: none;
+  }
+
+  .controls, .images-preview, .merge-preview, .preview-images-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 15px;
+  }
+
+  .preview-images-container {
+    width: 100% !important;
+    margin: 15px 0;
+    padding: 15px;
+  }
+
+  .images-container {
+    width: 100%;
+    padding: 0;
+    margin: 10px 0;
+  }
+
+  /* 移除所有计算宽度 */
+  .controls, .images-preview, .merge-preview, .preview-images-container {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* 移除不必要的边距和计算 */
+  .preview-image-item {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* 确保所有内容都使用 border-box */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  /* 移除不必要的边距 */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 调整图片容器的边距 */
+  .images-container {
+    padding: 0;
+    margin: 10px 0;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    padding: 15px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+
+  .spacing-control {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .spacing-control label {
+    min-width: auto;
+    margin-bottom: 5px;
+  }
+
+  .spacing-control input[type="range"] {
+    height: 36px; /* 增大滑块高度便于触摸 */
+    margin: 0;
+  }
+
+  .file-input-button {
+    width: 100%;
+    justify-content: center;
+    padding: 15px; /* 增大按钮点击区域 */
+  }
+
+  .preview-button, .download-button {
+    width: 100%;
+    padding: 15px; /* 增大按钮点击区域 */
+  }
+
+  .images-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    margin: 15px 0;
+    padding: 0 5px;
+  }
+
+  .image-item {
+    padding: 10px;
+    min-height: 120px;
+  }
+
+  .image-item img {
+    max-height: 90px;
+  }
+
+  .preview-image-item {
+    height: 140px; /* 调整预览图片高度 */
+    padding: 10px 15px;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .preview-image-number, .preview-remove-button {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .enlarged-image-container {
+    max-width: 95vw; /* 放大图片时占据更多屏幕空间 */
+    margin: 10px;
+  }
+
+  .close-button {
+    width: 36px; /* 增大关闭按钮点击区域 */
+    height: 36px;
+    font-size: 24px;
+  }
+
+  .images-preview, .merge-preview {
+    padding: 15px;
+    margin-top: 20px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+
+  .preview-images-container {
+    width: 100%;
+    padding: 15px;
+    gap: 10px;
+    margin: 15px 0;
+  }
+
+  /* 优化触摸操作 */
+  .drag-handle {
+    display: none; /* 在移动端隐藏拖动提示文字 */
+  }
+
+  .image-item img, .preview-image-wrapper img {
+    margin-bottom: 5px;
+  }
+
+  /* 调整滚动条样式 */
+  .preview-images-container::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* 确保所有内容都使用 border-box */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+}
+
+/* 针对更小屏幕的优化 */
+@media (max-width: 480px) {
+  .images-container {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  .preview-image-item {
+    height: 120px;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  .image-item {
+    min-height: 100px;
+  }
+
+  .image-item img {
+    max-height: 70px;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) {
+  .drag-handle {
+    display: none; /* 在触摸设备上隐藏拖动提示文字 */
+  }
+
+  .spacing-control input[type="range"] {
+    height: 30px; /* 增大滑块高度便于触摸 */
+  }
+
+  .remove-button {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* 优化触摸交互 */
+.preview-button, .download-button, .remove-button {
+  min-height: unset;
+}
+
+.spacing-control input[type="range"] {
+  margin: 10px 0;
+  width: 100%;
+}
+
+/* 添加触摸反馈 */
+.image-item:active {
+  transform: scale(0.98);
+}
+
+.preview-button:active, .download-button:active {
+  transform: scale(0.98);
+}
+
+/* 添加预览区域删除按钮样式 */
+.preview-remove-button {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 0;
+  line-height: 1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.2s ease;
+  z-index: 1;
+}
+
+.preview-remove-button:hover {
+  background: #c0392b;
+}
+
+@media (max-width: 768px) {
+  .preview-remove-button {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  .image-item img {
+    max-height: calc(100% - 20px);
+  }
+
+  .drag-handle {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+}
+
+.preview-image-number {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #3498db;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+  font-size: 16px;
+  z-index: 3;
+}
+
+.preview-remove-button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  min-height: unset;
+  aspect-ratio: 1;
+}
+
+/* 添加放大图片相关样式 */
+.enlarged-image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.enlarged-image-container {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: 20px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: default;
+}
+
+.enlarged-image-container img {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: background-color 0.2s;
+}
+
+.close-button:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* 添加鼠标样式提示可点击 */
+.preview-image-wrapper img {
+  cursor: zoom-in;
+}
+
+/* 添加视口元标签 */
+@viewport {
+  width: device-width;
+  initial-scale: 1;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .image-number, .remove-button, .preview-remove-button {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    min-height: unset;
+    aspect-ratio: 1;
+  }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  /* 统一所有按钮的宽度和样式 */
+  .preview-button, 
+  .download-button, 
+  .file-input-button,
+  .file-input-container {
+    width: 100% !important;
+    justify-content: center;
+    padding: 15px;
+  }
+
+  /* 确保文件输入容器和按钮宽度一致 */
+  .file-input-container {
+    display: block;
+  }
+
+  .file-input-button {
+    display: flex;
+    width: 100% !important;
+  }
+}
+
+/* 添加深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  html, body, #root {
+    background-color: #1a1a1a;
+    color: #e1e1e1;
+  }
+
+  .app {
+    background-color: #1a1a1a;
+  }
+
+  /* 容器背景色 */
+  .controls, .images-preview, .merge-preview {
+    background: #2d2d2d;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  /* 标题颜色 */
+  h1, h2 {
+    color: #e1e1e1;
+  }
+
+  /* 按钮样式 */
+  .preview-button, .download-button, .file-input-button {
+    background-color: #2980b9;
+  }
+
+  .preview-button:hover:not(:disabled),
+  .download-button:hover,
+  .file-input-button:hover {
+    background-color: #3498db;
+  }
+
+  .preview-button:disabled {
+    background-color: #4a4a4a;
+    color: #888;
+  }
+
+  /* 图片项样式 */
+  .image-item {
+    background: #2d2d2d;
+    border-color: #404040;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .image-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  /* 预览区域样式 */
+  .preview-images-container {
+    background: #2d2d2d;
+  }
+
+  .preview-image-item {
+    background: #2d2d2d;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  /* 文字颜色 */
+  .spacing-control label,
+  .spacing-control span {
+    color: #e1e1e1;
+  }
+
+  .drag-handle {
+    color: #3498db;
+  }
+
+  /* 滚动条样式 */
+  .preview-images-container {
+    scrollbar-color: #3498db #2d2d2d;
+  }
+
+  .preview-images-container::-webkit-scrollbar-track {
+    background: #2d2d2d;
+  }
+
+  /* 放大图片模态框 */
+  .enlarged-image-overlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .enlarged-image-container {
+    background: #2d2d2d;
+  }
+
+  /* 删除按钮悬停效果 */
+  .remove-button:hover,
+  .preview-remove-button:hover {
+    background: #d63031;
+  }
+}
